@@ -20,12 +20,13 @@ app = Flask(__name__)
 # ==========================================
 
 data = pd.read_csv(
-    r"C:\Users\ADMIN\Spam-Email-Classifier\SMSSpamCollection",
+    "SMSSpamCollection",
     sep="\t",
     header=None,
     names=["label", "message"],
     encoding="latin-1"
 )
+
 
 print("Dataset loaded successfully!")
 print(f"Total messages: {len(data)}")
