@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SpamGuard AI</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="background-glow glow-one"></div>
+    <div class="background-glow glow-two"></div>
+
+    <main class="container">
+
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <div class="logo-icon">✉</div>
+
+                <div>
+                    <h1>SpamGuard <span>AI</span></h1>
+                    <p>Intelligent Message Protection</p>
+                </div>
+            </div>
+
+            <div class="status">
+                <span class="status-dot"></span>
+                AI MODEL ACTIVE
+            </div>
+        </header>
+
+
+        <!-- Hero -->
+        <section class="hero">
+
+            <div class="badge">
+                <span>✦</span>
+                NLP POWERED DETECTION
+            </div>
+
+            <h2>
+                Detect Spam.<br>
+                <span>Stay Protected.</span>
+            </h2>
+
+            <p class="hero-text">
+                Analyze suspicious messages using machine learning
+                and natural language processing.
+            </p>
+
+        </section>
+
+
+        <!-- Main Card -->
+        <section class="classifier-card">
+
+            <div class="card-header">
+                <div>
+                    <h3>Analyze a Message</h3>
+                    <p>Paste or type a message below to check whether it is spam.</p>
+                </div>
+
+                <div class="shield">🛡️</div>
+            </div>
+
+
+            <!-- Message Input -->
+            <form method="POST">
+
+                <label for="message">MESSAGE CONTENT</label>
+
+                <textarea
+                    id="message"
+                    name="message"
+                    placeholder="Example: Congratulations! You have won a prize. Click here to claim..."
+                    required
+                ></textarea>
+
+                <div class="input-info">
+                    <span>🔒 Your message is analyzed locally</span>
+                    <span>AI Classification</span>
+                </div>
+
+                <button type="submit">
+                    <span>Analyze Message</span>
+                    <span class="arrow">→</span>
+                </button>
+
+            </form>
+
+
+            <!-- Result -->
+            {% if prediction %}
+
+            <div class="result {% if prediction == 'SPAM' %}spam{% else %}ham{% endif %}">
+
+                <div class="result-icon">
+                    {% if prediction == 'SPAM' %}
+                        ⚠
+                    {% else %}
+                        ✓
+                    {% endif %}
+                </div>
+
+                <div class="result-content">
+
+                    <p class="result-label">ANALYSIS RESULT</p>
+
+                    <h3>
+                        {{ prediction }}
+                    </h3>
+
+                    <p>
+                        {% if prediction == 'SPAM' %}
+                            This message appears to contain spam-like content.
+                        {% else %}
+                            This message appears to be a legitimate message.
+                        {% endif %}
+                    </p>
+
+                </div>
+
+                <div class="probability">
+                    <strong>{{ probability }}%</strong>
+                    <span>Confidence</span>
+                </div>
+
+            </div>
+
+            {% endif %}
+
+        </section>
+
+
+        <!-- Features -->
+        <section class="features">
+
+            <div class="feature">
+                <div class="feature-icon">🧠</div>
+                <div>
+                    <h4>Machine Learning</h4>
+                    <p>Naive Bayes classification</p>
+                </div>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">⚡</div>
+                <div>
+                    <h4>Fast Detection</h4>
+                    <p>Instant message analysis</p>
+                </div>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">📊</div>
+                <div>
+                    <h4>98.57% Accuracy</h4>
+                    <p>Tested on 5,572 messages</p>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- Footer -->
+        <footer>
+            <p>
+                SpamGuard AI • NLP Spam Detection System
+            </p>
+
+            <p>
+                Built with Python • Flask • Scikit-learn
+            </p>
+        </footer>
+
+    </main>
+
+</body>
+</html>
